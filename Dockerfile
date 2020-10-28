@@ -20,6 +20,6 @@ RUN git checkout "$DASH_VERSION" && \
     ./configure --enable-static && \
     make
 
-FROM scratch
+FROM busybox:1.32
 COPY --from=buildenv /dash/src/dash /bin/sh
 ENTRYPOINT [ "/bin/sh" ]
