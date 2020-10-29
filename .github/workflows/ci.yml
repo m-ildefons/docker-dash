@@ -27,8 +27,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build the Docker image
+        uses: docker/build-push-action@v1
         id: docker_build
-        run: docker build . --file Dockerfile --tag dash:$(date +%s)
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ildefons/dash:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
