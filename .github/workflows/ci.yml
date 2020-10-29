@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Checkout
         uses: actions/checkout@v2
       -
@@ -30,9 +30,6 @@ jobs:
         uses: docker/build-push-action@v1
         id: docker_build
         with:
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64
           push: true
           tags: |
             ildefons/dash:latest
