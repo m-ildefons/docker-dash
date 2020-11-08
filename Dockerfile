@@ -22,4 +22,7 @@ RUN git checkout "$DASH_VERSION" && \
 
 FROM busybox:1.32
 COPY --from=buildenv /dash/src/dash /bin/sh
+COPY --from=buildenv /dash/COPYING /COPYING
+COPY initsh /initsh
+ENV ENV "/initsh"
 ENTRYPOINT [ "/bin/sh" ]
