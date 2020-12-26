@@ -1,6 +1,6 @@
 FROM debian:buster as buildenv
 
-ARG DASH_VERSION="v0.5.11.2"
+ARG DASH_VERSION="v0.5.11.3"
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -21,6 +21,9 @@ RUN git checkout "$DASH_VERSION" && \
     make
 
 FROM busybox:1.32
+
+LABEL maintainer="Moritz Röhrich <moritz@ildefons.de>"
+
 COPY --from=buildenv /dash/src/dash /bin/sh
 COPY --from=buildenv /dash/COPYING /COPYING
 COPY initsh /initsh
